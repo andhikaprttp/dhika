@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio - Wikipedia Style</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+      .search-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #searchInput {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #searchInput:focus {
+            outline: none;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+        /* CSS untuk hasil pencarian Wikipedia */
+        .search-results {
+            margin-top: 20px;
+        }
+
+        .search-result {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .search-result h3 {
+            margin: 0;
+        }
+
+        .search-result p {
+            margin: 5px 0;
+        }
+        
+        .search-result a {
+            text-decoration: none;
+            
+        }
+
+        .search-result a:hover {
+            text-decoration: underline;
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Andhika Pratama Putra</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="https://andhikapratamap.hashnode.dev/">Blog</a></li>
+          <li><a href="mailto:andhikaprttp@keemail.me">Kontak</a></li>
+          <li><a href="#" onclick="openModal()">About</a></li>
+        </ul>
+      </nav>
+      <!-- Input pencarian Wikipedia -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Cari di Wikipedia...">
+            <button onclick="searchWikipedia()">Cari</button>
+        </div>
+    </header>
+    <main>
+          <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>About</h2>
+            <p>Saya tertarik dengan teknologi informasi dan masih mempelajari beberapa bahasa komputer seperti C++, Javascript dan Python serta hal hal yang berhubungan dengan Teknologi Informasi dan saya menyukai Open Source dan Cyber Security and Coding.  Selain itu saat ini saya masih bersekolah di SMK RADEN PAKU dan mengambil jurusan Teknik Jaringan Komputer , pada pembuatan web ini saya sedang menjalani kegiatan magang di ISP Megadata Sidoarjo , serta ikut membantu menjadi admin web untuk dompetin.id</p>
+        </div>
+    </div>
+      <article>
+      <h2>Proyek di GitHub</h2>
+        <p>repository Github</p>
+        <hr />
+        <div id="github-repo">
+          <p>loading ...</p>
+        </div>
+      </article>
+      <aside class="sidebar">
+        <h2>Tentang Saya</h2>
+        <img class="gambar" src="assets/gambar/foto.jpg">
+        <ul>
+          <li><a href="#">Tentang Saya</a></li>
+          <li><a href="#">Portofolio</a></li>
+          <li><a href="#">Kontak</a></li>
+        </ul>
+      </aside>
+    </main>
+    <footer>
+      <p>andhika pratama putra | 2023</p>
+    </footer>
+    <script src="assets/js/script.js"></script>
+    <script>
+      // Fungsi untuk mencari di Wikipedia
+        function searchWikipedia() {
+            const searchInput = document.getElementById('searchInput');
+            const query = searchInput.value.trim(); // Mengambil teks dari input dan menghapus spasi awal dan akhir
+            const url = `https://id.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&utf8=1&srsearch=${encodeURIComponent(query)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const results = data.query.search;
+                    const searchResults = document.createElement('div');
+                    searchResults.classList.add('search-results');
+
+                    results.forEach(result => {
+                        const searchResult = document.createElement('div');
+                        searchResult.classList.add('search-result');
+                        searchResult.innerHTML = `
+                            <h3>${result.title}</h3>
+                            <p>${result.snippet}</p>
+                            <a href="https://id.wikipedia.org/wiki/${encodeURIComponent(result.title)}" target="_blank">Baca Lebih Lanjut</a>
+                        `;
+                        searchResults.appendChild(searchResult);
+                    });
+                    const main = document.querySelector('main');
+                    main.appendChild(searchResults);
+                })
+                .catch(error => {
+                    console.error('Error fetching Wikipedia data:', error);
+                });
+        }
+    </script>
+  </body>
+</html>
