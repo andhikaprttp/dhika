@@ -1,0 +1,165 @@
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+      }
+
+      article {
+        flex: 3;
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin: 10px;
+        border: 1px solid #ccc;
+      }
+      aside {
+        flex: 1;
+        background-color: #f0f0f0;
+        padding: 20px;
+        margin: 10px;
+        border: 1px solid #ccc;
+        display: none;
+      }
+      
+      aside li a {
+        text-decoration: none;
+      }
+
+      @media (min-width: 768px) {
+        aside {
+          display: block;
+        }
+      }
+      /* CSS untuk sidebar pada tampilan desktop */
+      aside.sidebar {
+        position: sticky;
+        top: 20px;
+      }
+
+      /* CSS untuk membuat sidebar ramping pada tampilan mobile */
+      @media (max-width: 768px) {
+        aside.sidebar {
+          display: none;
+        }
+
+        main {
+          flex-direction: column;
+        }
+
+        article {
+          flex: auto;
+        }
+      }
+
+      /* Artikel */
+      #github-repo {
+        margin-top: 20px;
+      }
+
+      #github-repo h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      #github-repo ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      #github-repo li {
+        margin-bottom: 10px;
+      }
+
+      #github-repo a {
+        text-decoration: none;
+      }
+
+      #github-repo a:hover {
+        text-decoration: underline;
+      }
+
+      .icon {
+        margin-right: 5px;
+      }
+
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      nav li {
+        float: left;
+      }
+
+      nav li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+
+      li a:hover {
+        background-color: #111;
+      }
+      
+      /* CSS untuk modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 10;
+            left: 0;
+            width: 75%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+                .modal-content {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal h2 {
+            margin-bottom: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        
+        .gambar {
+          width: 150px;
+          height: 150px;
+        }
